@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: MultithreadingTranslator
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgresql:5432/multitranslator
+    password: postgres
+    username: postgres
+  liquibase:
+    enabled: false
+
+server:
+  port: 8080
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    path: /multitranslator/api/v1/swagger-ui
+
+api:
+  key: ${apiKey}

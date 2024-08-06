@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            font-size: 30px;
+        }
+        input[type="submit"] {
+            margin: 5px 10px;
+            font-size: 30px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 30px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<h1>Multithreading Translator</h1>
+<form id="translationForm">
+    <label for="text">Text:</label>
+    <input type="text" id="text" name="text" required>
+    <label for="sourceLang">Source Language (unnecessary):</label>
+    <input type="text" id="sourceLang" name="sourceLang" required>
+    <label for="targetLang">Target Language:</label>
+    <input type="text" id="targetLang" name="targetLang" required><br>
+    <input type="submit" value="Translate">
+</form>
+<div id="result"></div>
+
+<script>
+    document.getElementById('translationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const text = document.getElementById('text').value;
+        const sourceLang = document.getElementById('sourceLang').value;
+        const targetLang = document.getElementById('targetLang').value;
+
+        const requestBody = {
+            text: text,
+            sourceLanguage: sourceLang,
+            targetLanguage: targetLang
+        };
+
+        fetch('/multitranslator/api/v1/translate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.textContent = `${data.text}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>
