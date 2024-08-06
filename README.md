@@ -23,8 +23,8 @@
 Написан интеграционный тест, проверяющий правильность работы базы данных
 
 ## Стек технологий
-- Java
-- Spring Boot
+- Java 21
+- Spring Boot 3
 - Maven
 - PostgreSQL
 - JDBC
@@ -37,7 +37,7 @@
    git clone https://github.com/Arden30/MultithreadingTranslator
    cd MultithreadingTranslator
    ```
-2. Выполнить сборку jar-архива с помощью Maven:
+2. Выполнить сборку jar-архива с помощью Maven (версия сборщика должна поддерживать JDK 21):
    ```bash
    mvn clean package
    ```
